@@ -1,0 +1,73 @@
+
+<h2 class="text-center mt-4 mb-5 zindex-tooltip">Flights!</h2>
+<div class="container-fluid bg-light bg-gradient">
+    <div class="row col-md-12 pt-5 pb-5">
+        <div class="col-md-3 filters">
+            <div>
+                <div class="container my-sm-5 border p-0 bg-sec-light">
+                    <div id="content">
+                       <div class="bg-light p-2 px-md-4 px-3 shadow-sm">
+                          <div class="d-flex align-items-center">
+                             <div class="user-select-none">Filters</div>
+                             <div class="fa fa-angle-right px-2"></div>
+                             <div id="navigator" class="text-primary"></div>
+                          </div>
+                       </div>
+                       <div class="p-3 pl-1">
+                          <div class="me-sm-4">
+                             <div id="filter" class="p-2 bg-light ms-md-4 ms-sm-2 border">
+                                <div class="border-bottom h5 text-uppercase">Filter By</div>
+                                <div class="box border-bottom">
+                                   <div class="box-label text-uppercase d-flex align-items-center">Launch Year <button class="btn ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#inner-box" aria-expanded="false" aria-controls="inner-box"> <span class="fa fa-plus"></span> </button> </div>
+                                   <div id="inner-box" class="collapse show">
+                                      <div class="my-1"> <input class="btn btn-primary" type="button" value='2006' (click)="filterFlightsByYear('2006')"></div>
+                                      <div class="my-1"> <input class="btn btn-primary" type="button" value='2007' (click)="filterFlightsByYear('2007')"></div>
+                                      <div class="my-1"> <input class="btn btn-primary" type="button" value='2008' (click)="filterFlightsByYear('2008')"></div>
+                                      <div class="my-1"> <input class="btn btn-primary" type="button" value='2009' (click)="filterFlightsByYear('2009')"></div>
+                                      <div class="my-1"> <input class="btn btn-primary" type="button" value='2010' (click)="filterFlightsByYear('2010')"></div>
+                                      <div class="my-1"> <input class="btn btn-primary" type="button" value='2011' (click)="filterFlightsByYear('2011')"></div>
+                                      <div class="my-1"> <input class="btn btn-primary" type="button" value='2012' (click)="filterFlightsByYear('2012')"></div>
+                                      <div class="my-1"> <input class="btn btn-primary" type="button" value='2013' (click)="filterFlightsByYear('2013')"></div>
+                                      <div class="my-1"> <input class="btn btn-primary" type="button" value='2014' (click)="filterFlightsByYear('2014')"></div>
+                                      <div class="my-1"> <input class="btn btn-primary" type="button" value='2015' (click)="filterFlightsByYear('2015')"></div>
+                                   </div>
+                                </div>
+                                <div class="box border-bottom">
+                                   <div class="box-label text-uppercase d-flex align-items-center">Successfull Launch<button class="btn ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#property" aria-expanded="false" aria-controls="property"> <span class="fa fa-plus"></span> </button> </div>
+                                   <div id="property" class="collapse">
+                                    <div class="my-1"> <input class="btn btn-primary" type="button" value='True' (click)="filterFlightsByLaunch(true)"></div>
+                                    <div class="my-1"> <input class="btn btn-primary" type="button" value='False' (click)="filterFlightsByLaunch(false)"></div>
+                                   </div>
+                                </div>
+                                <div class="box">
+                                    <div class="box-label text-uppercase d-flex align-items-center">Successfull Landing<button class="btn ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#property" aria-expanded="false" aria-controls="property"> <span class="fa fa-plus"></span> </button> </div>
+                                    <div id="property" class="collapse">
+                                        <div class="my-1"> <input class="btn btn-primary" type="button" value='True' (click)="filterFlightsByLanding(true)"></div>
+                                        <div class="my-1"> <input class="btn btn-primary" type="button" value='False' (click)="filterFlightsByLanding(false)"></div>
+                                    </div>
+                                 </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <h3>SpaceX Launch Group</h3>
+            <div  *ngIf="flights.length <= 0"><p>No flights..</p></div>
+            <div class="row col list-group-item-section" *ngIf="flights.length > 0">
+
+                <div class="col list-group-item m-2" *ngFor="let flight of flights">
+                    <p class="text-center list-group-item-dark"><img src="{{ flight.links.mission_patch }}" width="150" height="150"></p>
+                    <p><strong>Flight Number:</strong> {{ flight.flight_number }}</p>
+                    <p><strong>Mission Name:</strong> {{ flight.mission_name }}</p>
+                    <p><strong>Mission IDs:</strong> {{ flight.mission_id }}</p>
+                    <p><strong>Launch Year:</strong> {{ flight.launch_year }}</p>
+                    <p><strong>Successful Launch:</strong> {{ flight.launch_success }}</p>
+                    <p><strong>Successful Landing:</strong> {{ flight.rocket.first_stage.cores[0].land_success }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
